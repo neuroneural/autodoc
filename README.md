@@ -28,6 +28,43 @@ sh autodoc-gen.sh
 Asks for User input. Enter Project name, Author name etc.
 
 Step 4:
-Update `conf.py`
+Update `index.rst`
+Add all the module names(If you have added `__init__.py` file inside the main project folder then just add folder name)
 ```python
+.. toctree::
+   :maxdepth: 2
+   :caption: Contents:
+   
+   neuro
+```
+
+Update `conf.py`
+a) Add this at the top of `conf.py`.
+```python
+import os
+import sys
+                
+sys.path.insert(0,os.path.abspath("../../"))
+sys.path.insert(0,os.path.abspath("../"))
+```
+b) Add extentions
+```python
+extensions = [
+    "sphinx.ext.autodoc",
+    "sphinx.ext.viewcode", # Remove if you don't want to display your code in documentation.
+    "sphinx.ext.todo",
+    "sphinx.ext.coverage",
+    "sphinx.ext.mathjax",
+    "sphinx.ext.githubpages",
+    "sphinx.ext.napoleon",
+    "sphinx.ext.autosummary",
+    "sphinx.ext.inheritance_diagram",
+    "sphinx.ext.intersphinx",
+    "sphinx.ext.ifconfig",
+    "sphinx_copybutton",
+]
+```
+c) Customise your theme
+```python
+html_theme = 'sphinx_rtd_theme'
 ```
